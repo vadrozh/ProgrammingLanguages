@@ -27,7 +27,7 @@
 
 #include <iostream>
 
-enum class Menu {
+enum Menu {
     EXIT = 0, PUSH, POP, PRINT
 };
 
@@ -87,7 +87,7 @@ void printStack(int stack[], size_t currentSize) {
     if (!currentSize)
         printf("Стек пуст\n");
     else
-        for (int i = 0; i < currentSize; i++)
+        for (size_t i = 0; i < currentSize; i++)
             printf("%i ", stack[i]);
     printf("\n");
 }
