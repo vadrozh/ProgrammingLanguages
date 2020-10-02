@@ -27,7 +27,7 @@
 
 #include <iostream>
 
-enum Menu {
+enum class Menu {
     EXIT = 0, PUSH, POP, PRINT
 };
 
