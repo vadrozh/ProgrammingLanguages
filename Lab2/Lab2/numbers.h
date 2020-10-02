@@ -9,7 +9,7 @@ class numbers
 		void set(int a, int b);
 		int getX();
 		int getY();
-		int greatest();
-		int squaredSum();
+		double average();
+		int odd();
 };
 

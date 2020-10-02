@@ -9,6 +9,19 @@ int numbers::getX() { return x; }
 
 int numbers::getY() { return y; }
 
-int numbers::greatest() { return x > y ? x : y; }
+double numbers::average() { return (x + y) / 2; }
 
-int numbers::squaredSum() { return x*x + y*y; }
+int numbers::odd(){
+	int biggest = 0, lowest = 0, oddCount = 0;
+	if (x > y) {
+		biggest = x;
+		lowest = y;
+	} else {
+		biggest = y;
+		lowest = x;
+	}
+	for (int i = lowest; i <= biggest; i++)
+		if (i % 2)
+			++oddCount;
+	return oddCount;
+}
