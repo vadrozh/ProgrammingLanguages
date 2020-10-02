@@ -40,7 +40,7 @@ int popFromStack(int stack[], size_t* currentSize);
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    int stack[stackSize];
+    int stack[stackSize], result;
     size_t size = 0;
 
     bool stop = false;
@@ -53,7 +53,10 @@ int main()
         printf("3. Напечатать содержимое стека\n");
         printf("Выберите операцию: ");
         Menu option;
-        scanf_s("%d", &option);
+        while (!scanf_s("%d", &option)) {
+            printf("Неверное значение, попробуйте еще раз: ");
+            while (getchar() != '\n');
+        }
         switch (option)
         {
         case Menu::EXIT:
@@ -62,7 +65,10 @@ int main()
         case Menu::PUSH:
             printf("Введите значение элемента: ");
             int item;
-            scanf_s("%i", &item);
+            while (!scanf_s("%i", &item)) {
+                printf("Неверное значение, попробуйте еще раз: ");
+                while (getchar() != '\n');
+            }
             pushToStack(stack, &size, item);
             break;
         case Menu::POP:
