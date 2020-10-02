@@ -20,7 +20,7 @@ int numbers::odd(){
 		biggest = y;
 		lowest = x;
 	}
-	for (int i = lowest; i <= biggest; i++)
+	for (int i = lowest + 1; i < biggest; i++)
 		if (i % 2)
 			++oddCount;
 	return oddCount;
