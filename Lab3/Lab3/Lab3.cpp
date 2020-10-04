@@ -26,14 +26,49 @@
 */
 
 #include <iostream>
+#include <fstream>
 #include "sortition.h"
 
 using namespace std;
 
 int main()
 {
+    ifstream* file = new ifstream("../array.txt");
     sortition sort;
-    sort.readArrayFromFile("../array.txt");
+
+    if (!file->is_open()) {
+        cout << "Failed to open file." << endl;
+        return 0;
+    }
+
+    if (!sort.readArrayFromFile(file)) {
+        cout << "Failed to read array." << endl;
+        return 0;
+    }
+    file->seekg(0, ios_base::beg);
+
+    cout << "Initial array:" << endl;
     sort.printArray();
+
+    sort.insertionSort();
+    cout << "Insertion sort:" << endl;
+    sort.printArray();
+
+    if (!sort.readArrayFromFile(file)) {
+        cout << "Failed to read array." << endl;
+        return 0;
+    }
+    file->seekg(0, ios_base::beg);
+
+    sort.exchangeSort();
+    cout << "Exchange sort:" << endl;
+    sort.printArray();
+
+    if (file) {
+        if (file->is_open())
+            file->close();
+        delete file;
+        file = nullptr;
+    }
     return 0;
 }

@@ -1,32 +1,10 @@
 #include "sortition.h"
 
-sortition::sortition()
+bool sortition::readArrayFromFile(ifstream* file)
 {
-
-}
-
-sortition::~sortition()
-{
-	clearMemory();
-}
-
-void sortition::clearMemory()
-{
-	if (file) {
-		file->close();
-		delete file;
-		file = nullptr;
-	}
+	if (!fArray.empty())
+		fArray.clear();
 	arraySize = 0;
-}
-
-
-bool sortition::readArrayFromFile(string filePath)
-{
-	clearMemory();
-	file = new ifstream(filePath);
-	if (!file->is_open())
-		return false;
 
 	float fBuffer;
 	while (!file->eof()) {
@@ -37,12 +15,43 @@ bool sortition::readArrayFromFile(string filePath)
 		fArray.push_back(fBuffer);
 	}
 
-	return true;
+	if (arraySize)
+		return true;
+	else
+		return false;
 }
 
 void sortition::printArray()
 {
-	for (size_t i = 0; i < fArray.size(); i++)
-		cout << fArray[i]  << " " << endl;
-	cout << "Size is " << arraySize << endl;
+	if (!fArray.empty() && arraySize) {
+		for (size_t i = 0; i < fArray.size(); i++)
+			cout << fArray[i] << " " << endl;
+		cout << "-------" << endl;
+	}
+}
+
+void sortition::insertionSort()
+{
+	if (!fArray.empty() && arraySize)
+		for (size_t i = 1; i < arraySize; i++) {
+			for (size_t j = i; j > 0 && fArray[j - 1] < fArray[j]; j--) {
+				float buffer = fArray[j];
+				fArray[j] = fArray[j - 1];
+				fArray[j - 1] = buffer;
+			}
+		}
+}
+
+void sortition::exchangeSort()
+{
+	if (!fArray.empty() && arraySize) {
+		float buffer = 0;
+		for (size_t i = 1; i < arraySize; ++i)
+			for (size_t j = arraySize - 1; j >= i; --j)
+				if (fArray[j - 1] > fArray[j]) {
+					buffer = fArray[j - 1];
+					fArray[j - 1] = fArray[j];
+					fArray[j] = buffer;
+				}
+	}
 }
