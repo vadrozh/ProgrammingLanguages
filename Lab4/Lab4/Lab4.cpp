@@ -18,11 +18,11 @@ using namespace std;
 
 int main()
 {
-    int a1, b1, a2, b2;
-    cout << "Enter first pair: ";
-    cin >> a1 >> b1;
-    cout << "Enter second pair: ";
-    cin >> a2 >> b2;
-    numberPairs first(a1, b1), second(a2, b2), third = first + second;
-    cout << endl << "Result: c = " << third.getA() << ", d = " << third.getB();
+    int a, b, c, d;
+    cout << "Enter first pair (a,b): " << endl;
+    cin >> a >> b;
+    cout << "Enter second pair (c,d): " << endl;
+    cin >> c >> d;
+    numberPairs first(a, b), second(c, d), third = first + second;
+    cout << endl << "Result: e = " << third.getA() << ", f = " << third.getB();
 }
