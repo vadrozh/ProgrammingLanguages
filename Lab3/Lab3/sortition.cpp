@@ -25,8 +25,8 @@ void sortition::printArray()
 {
 	if (!fArray.empty() && arraySize) {
 		for (size_t i = 0; i < fArray.size(); i++)
-			cout << fArray[i] << " " << endl;
-		cout << "-------" << endl;
+			cout << fArray[i] << " ";
+		cout << endl << "---------" << endl;
 	}
 }
 
