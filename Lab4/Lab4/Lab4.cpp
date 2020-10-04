@@ -1,20 +1,28 @@
-﻿// Lab4.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿/*
+ * Author: Рожков Вадим
+ *
+ * Group: СБС-901, 2 подгруппа
+ *
+ * Task, #: 4.22
+ *
+ * Description: Напишите программу, реализующую класс для работы с парой чисел (a,b), где a и b целые числа. Для данного класса реализуйте перегрузку операции сложения таких пар чисел. Сумма
+ *              двух чисел вычисляется по правилу (a,b)+(c,d)=(a*c, b/\d). Значок /\ показывает побитовую операцию И двух чисел. В функции main() необходимо запросить у пользователя значения
+ *              чисел a и b для двух объектов и создать три объекта, объявленного класса. После этого надосложить два объекта, вычислить их сумму и присвоить третьему объекту. Значение полученной
+ *              пары чисел необходимо вывести на консоль.
+ *
+*/
 
 #include <iostream>
+#include "numberPairs.h"
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    int a1, b1, a2, b2;
+    cout << "Enter first pair: ";
+    cin >> a1 >> b1;
+    cout << "Enter second pair: ";
+    cin >> a2 >> b2;
+    numberPairs first(a1, b1), second(a2, b2), third = first + second;
+    cout << endl << "Result: c = " << third.getA() << ", d = " << third.getB();
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
