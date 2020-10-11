@@ -7,8 +7,8 @@ public:
 		b = y;
 	}
 
-	friend numberPairs operator+(const numberPairs& nP1, const numberPairs& nP2) {
-		return numberPairs(nP1.a + nP2.a, nP1.b & nP2.b);
+	friend numberPairs operator*(const numberPairs& nP1, const numberPairs& nP2) {
+		return numberPairs(nP1.a * nP2.a, nP1.b & nP2.b);
 	}
 	
 	int getA() { return a; }

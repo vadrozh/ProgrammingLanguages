@@ -23,6 +23,6 @@ int main()
     cin >> a >> b;
     cout << "Enter second pair (c,d): " << endl;
     cin >> c >> d;
-    numberPairs first(a, b), second(c, d), third = first + second;
+    numberPairs first(a, b), second(c, d), third = first * second;
     cout << endl << "Result: e = " << third.getA() << ", f = " << third.getB();
 }
