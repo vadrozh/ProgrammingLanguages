@@ -14,7 +14,6 @@
                     2) ChangeF(), метод изменяет поле Firm, в качестве параметра методу передается новое наименование компании застройщика.
                     3) ChangeN(), метод изменяет поле NumberF, в качестве параметра методу передается новое количество этажей.
                     4) ChangeY(), метод изменяет поле YearB, в качестве параметра методу передается новый год постройки.
-            -----
                 Второй класс Shop должен быть потомком класса Build и содержать информацию о магазинах с дополнительным полем Square, содержащее величину торговых площадей. Класс
                 должен содержать конструктор с параметрами, позволяющий заполнять поле данного класса, а также поля базового класса. В классе Shop должны быть реализованы два метода:
                     1) ChangeS(), метод изменяет поле Square, в качестве параметра методу передается новое значение торговых площадей.
@@ -25,12 +24,13 @@
                     1) ChangeK(), метод изменяет поле Kvar, в качестве параметра методу передается новое количество квартир.
                     2) Print(), метод возвращает сведения о жилом доме в виде одной текстовой строки с четырьмя полями (Компания, Этажность, Возраст, Количество_квартир), разделенными
                        пробелом. В качестве параметра методу передается текущий год. Если текущий год меньше года выпуска, то вместо возраста выводится фраза «еще не построен».
+            -----
                 Напишите программу, которая получает на входе текстовый файл Input.txt с записями о постройках. В первой строке файла указан текущий год. Далее идут записи в виде строк. В
                 одной строке файла содержится одна запись о магазине или жилом доме. Запись о магазине имеет пять полей, разделенных пробелом в следующем формате:
                     М Компания Этажность Год Площадь
                 Первая буква ‘М’ в строке является признаком магазина. Запись о жилом доме имеет пять полей, разделенных пробелом в следующем формате:
                     Ж Компания Этажность Год Количество_квартир
-                Первая буква ‘Ж’ в строке является признаком автобуса. Программа должна создавать три динамических массива. Первый динамический массив
+                Первая буква ‘Ж’ в строке является признаком жилого дома. Программа должна создавать три динамических массива. Первый динамический массив
                 должен состоять из объектов класса Shop и содержать записи о магазинах, перечисленных во входном файле. Второй динамический массив должен состоять из объектов класса Flat и
                 содержать записи о жилых домах, перечисленных во входном файле. Третий динамический массив должен состоять из объектов класса Build и содержать сведения о магазинах и жилых
                 домах, перечисленных во входном файле. После этого программа должна создать три файла Shop.txt, Flat.txt и Build.txt. В первый файл должны быть помещены сведения о магазинах в виде
@@ -40,9 +40,70 @@
 */
 
 #include "shop.h"
+#include "flat.h"
 #include <iostream>
+#include <string>
+#include <sstream>
+#include <fstream>
+#include <vector>
+
+bool readInputFile(ifstream* file, int* currentYear, vector<build>* builds, vector<shop>* shops, vector<flat>* flats);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    setlocale(LC_ALL, "Russian");
+    ifstream* input = new ifstream("../input.txt");
+    if (!input->is_open()) {
+        cout << "Failed to open file." << endl;
+        return 0;
+    }
+
+    int currentYear = 0;
+    vector<build> builds;
+    vector<shop> shops;
+    vector<flat> flats;
+    if (!readInputFile(input, &currentYear, &builds, &shops, &flats)) {
+        cout << "Failed to read data." << endl;
+        return 0;
+    }
+
+    if (input) {
+        if (input->is_open())
+            input->close();
+        delete input;
+        input = nullptr;
+    }
+    return 0;
+}
+
+bool readInputFile(ifstream* file, int* currentYear, vector<build>* builds, vector<shop>* shops, vector<flat>* flats)
+{
+    string building;
+    while (!file->eof()) {
+        vector<string> data;
+        getline(*file, building);
+        if (file->fail())
+            return false;
+        if (!building.empty() && !*currentYear) {
+            *currentYear = stoi(building);
+            if (!*currentYear) {
+                cout << "Failed to read current year." << endl;
+                return false;
+            }
+        } else if (!building.empty())
+        {
+            stringstream stream(building);
+            string buffer;
+            while (stream >> buffer)
+                data.push_back(buffer);
+            if (data.size() != 5)
+                return false;
+            builds->push_back(build(data.at(1), stoi(data.at(2)), stoi(data.at(3))));
+            if (data.at(0) == "М")
+                shops->push_back(shop(data.at(1), stoi(data.at(2)), stoi(data.at(3)), stoi(data.at(4))));
+            else if (data.at(0) == "Ж")
+                flats->push_back(flat(data.at(1), stoi(data.at(2)), stoi(data.at(3)), stoi(data.at(4))));
+        }
+    }
+    return true;
 }

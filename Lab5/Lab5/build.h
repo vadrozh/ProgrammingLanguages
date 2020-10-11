@@ -13,12 +13,12 @@ public:
 		this->buildYear = buildYear;
 	}
 
-	string printData	  ()							{ return "Company: " + companyName + "Floor count:" + to_string(floorCount) + "Build year:" + to_string(buildYear); }
+	string printBuildData ()							{ return companyName + " " + to_string(floorCount) + " " + to_string(buildYear); }
 	void changeCompany	  (string newCompanyName)		{ companyName = newCompanyName; }
 	void changeFloorCount (unsigned int newFloorCount)	{ floorCount = newFloorCount; }
 	void changeBuildYear  (unsigned int newBuildYear)	{ buildYear = newBuildYear; }
 
-private:
+protected:
 	string		 companyName;
 	unsigned int floorCount;
 	unsigned int buildYear;

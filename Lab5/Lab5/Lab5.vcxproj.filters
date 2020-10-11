@@ -26,5 +26,8 @@
     <ClInclude Include="shop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="flat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
