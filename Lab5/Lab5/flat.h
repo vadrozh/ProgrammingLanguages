@@ -20,7 +20,7 @@ public:
 
     void    changeApartmentsCount(unsigned int newApartmentsCount) { apartmentsCount = newApartmentsCount; }
     string  printFlatData        (unsigned int currentYear)        {
-        return companyName + " " + to_string(floorCount) + " " + (buildYear > currentYear ? to_string(buildYear) : "Not built yet") + " " + to_string(apartmentsCount);
+        return companyName + " " + to_string(floorCount) + " " + (buildYear > currentYear ? "Не построено" : to_string(buildYear)) + " " + to_string(apartmentsCount);
     }
 
 private:
