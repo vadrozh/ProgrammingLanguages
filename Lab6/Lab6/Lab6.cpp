@@ -12,7 +12,10 @@
 
 #include <iostream>
 
+#include "taylor.h"
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    taylor t;
+    std::cout << t.derivative(5,1,5);
 }

@@ -18,5 +18,16 @@
     <ClCompile Include="Lab6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="taylor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="taylor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="taylor_output.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
