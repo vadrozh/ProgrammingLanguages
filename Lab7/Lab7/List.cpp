@@ -33,7 +33,8 @@ void List::remove()
 	Node* removeNode = start;
 	while (removeNode->next != actual && actual)
 		actual = actual->next;
-	start->next = actual->next;
+	if (actual->next)
+		start->next = actual->next;
 	delete actual;
 	actual = start;
 }
