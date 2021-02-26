@@ -6,7 +6,7 @@ namespace Lab1
 {
     public static class IO
     {
-        public static int ReadInteger(string message, bool ZeroAcceptable = true)
+        public static int ReadInteger(string message, bool ZeroAcceptable = true, bool IsNotNegative = false)
         {
             if (!string.IsNullOrEmpty(message))
             {
@@ -17,8 +17,12 @@ namespace Lab1
                 string sValue = Console.ReadLine();
                 if (Int32.TryParse(sValue, out int iValue) && (ZeroAcceptable || iValue != 0))
                 {
-                    return iValue;
+                    if (!IsNotNegative || (iValue >= 0))
+                    {
+                        return iValue;
+                    }
                 }
+
                 Console.WriteLine("ERROR: Incorrect format. Enter integer value...");
             }
         }

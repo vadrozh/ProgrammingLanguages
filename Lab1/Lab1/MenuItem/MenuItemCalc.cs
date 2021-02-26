@@ -9,12 +9,12 @@ namespace Lab1.MenuItem
         public override void Execute()
         {
             Console.WriteLine("Enter X:");
-            int x = IO.ReadInteger(null, false);
+            int x = IO.ReadInteger(null, false, true);
 
             Console.WriteLine("Enter Z:");
             int z = IO.ReadInteger(null, false);
 
-            Console.WriteLine("Result: {0:F5}{1}", Math.Sqrt(x) - (6 / z), Environment.NewLine);
+            Console.WriteLine("Result: {0:F3}{1}", Math.Sqrt(x) - (6 / z), Environment.NewLine);
         }
     }
 }
