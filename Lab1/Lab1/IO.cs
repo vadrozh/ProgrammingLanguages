@@ -15,12 +15,9 @@ namespace Lab1
             while (true)
             {
                 string sValue = Console.ReadLine();
-                if (Int32.TryParse(sValue, out int iValue) && (ZeroAcceptable || iValue != 0))
+                if (Int32.TryParse(sValue, out int iValue) && (ZeroAcceptable || iValue != 0) && (!IsNotNegative || (iValue >= 0)))
                 {
-                    if (!IsNotNegative || (iValue >= 0))
-                    {
-                        return iValue;
-                    }
+                    return iValue;
                 }
 
                 Console.WriteLine("ERROR: Incorrect format. Enter integer value...");
