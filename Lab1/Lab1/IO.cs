@@ -6,16 +6,16 @@ namespace Lab1
 {
     public static class IO
     {
-        public static int ReadInteger(string message, bool ZeroAcceptable = true, bool IsNotNegative = false)
+        public static int ReadInteger(string sMessage, bool bZeroAcceptable = true, bool bIsNotNegative = false)
         {
-            if (!string.IsNullOrEmpty(message))
+            if (!string.IsNullOrEmpty(sMessage))
             {
-                Console.WriteLine(message);
+                Console.WriteLine(sMessage);
             }
             while (true)
             {
                 string sValue = Console.ReadLine();
-                if (Int32.TryParse(sValue, out int iValue) && (ZeroAcceptable || iValue != 0) && (!IsNotNegative || (iValue >= 0)))
+                if (Int32.TryParse(sValue, out int iValue) && (bZeroAcceptable || iValue != 0) && (!bIsNotNegative || (iValue >= 0)))
                 {
                     return iValue;
                 }
