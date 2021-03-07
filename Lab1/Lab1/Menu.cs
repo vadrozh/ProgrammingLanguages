@@ -34,7 +34,7 @@ namespace Lab1
         }
         private static void ShowMenu()
         {
-            Console.WriteLine("======= MENU =======");
+            Console.WriteLine("{0}======= MENU =======", Environment.NewLine);
 
             int iMenuItem = 0;
             foreach (MenuItemCore menuItem in Menu.MenuItems)
