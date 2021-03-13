@@ -42,5 +42,10 @@ namespace Lab1
                 Console.WriteLine("ERROR: Incorrect format. Enter correct date...");
             }
         }
+
+        public static string ReadString()
+        {
+            return Console.ReadLine();
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace Lab1
             Menu.AddItem(new MenuItemHelloWorld());
             Menu.AddItem(new MenuItemCalc());
             Menu.AddItem(new MenuItemRecursionDate());
+            Menu.AddItem(new MenuItemStringsValidation());
 
             while (true)
             {
