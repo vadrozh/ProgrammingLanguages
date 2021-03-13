@@ -83,9 +83,9 @@ namespace Lab1.MenuItem
             bool f = false;
             for (int i = 2; i < 1000; i++)
             {
-                foreach (int SimpleNum in aSimpleNums)
+                foreach (int iSimpleNum in aSimpleNums)
                 {
-                    f = i % SimpleNum == 0;
+                    f = i % iSimpleNum == 0;
                     if (f) break;
                 }
                 if (!f)
@@ -104,12 +104,12 @@ namespace Lab1.MenuItem
                 Console.Write("{0}\t", iNumber);
             } else
             {
-                foreach (int SimpleNum in aSimpleNums)
+                foreach (int iSimpleNum in aSimpleNums)
                 {
-                    if (iNumber % SimpleNum == 0)
+                    if (iNumber % iSimpleNum == 0)
                     {
-                        Console.Write("{0}\t", SimpleNum);
-                        RecursiveCheck(iNumber / SimpleNum);
+                        Console.Write("{0}\t", iSimpleNum);
+                        RecursiveCheck(iNumber / iSimpleNum);
                         break;
                     }
                 }
