@@ -33,12 +33,13 @@ namespace Lab1
             while (true)
             {
                 string sValue = Console.ReadLine();
-                if (DateTime.TryParse(sValue, out DateTime dtValue))
+                DateTime date;
+                if (DateTime.TryParseExact(sValue, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
                 {
-                    return dtValue;
+                    return date;
                 }
 
-                Console.WriteLine("ERROR: Incorrect value. Enter date...");
+                Console.WriteLine("ERROR: Incorrect format. Enter correct date...");
             }
         }
     }
