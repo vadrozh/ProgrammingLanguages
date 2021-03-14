@@ -38,7 +38,7 @@ namespace Lab1.Validation
         {
             if (Regex.IsMatch(sData, "[^@ \t\r\n]+@[^@ \t\r\n]+\\.[^@ \t\r\n]+"))
             {
-                Console.WriteLine("String {0} contains E-mail", sData);
+                throw new ValidationException(string.Format("String {0} contains E-mail", sData));
             }
             else
             {
@@ -50,7 +50,7 @@ namespace Lab1.Validation
         {
             if (Regex.IsMatch(sData, "[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}"))
             {
-                Console.WriteLine("String {0} contains phone number", sData);
+                throw new ValidationException(string.Format("String {0} contains phone number", sData));
             }
             else
             {
@@ -62,7 +62,7 @@ namespace Lab1.Validation
         {
             if (Regex.IsMatch(sData, "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"))
             {
-                Console.WriteLine("String {0} contains IP", sData);
+                throw new ValidationException(string.Format("String {0} contains IP", sData));
             }
             else
             {
