@@ -10,7 +10,7 @@ namespace Lab1.MenuItem
 
         public override void Execute()
         {
-            Console.WriteLine("Hello world! {0}", Environment.NewLine);
+            IO.WriteString(string.Format("Hello world! {0}", Environment.NewLine));
         }
     }
 }

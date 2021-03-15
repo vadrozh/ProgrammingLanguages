@@ -29,17 +29,17 @@ namespace Lab1
             }
             else
             {
-                Console.WriteLine("Menu item not found.{0}", Environment.NewLine);
+                IO.WriteString(string.Format("Menu item not found.{0}", Environment.NewLine));
             }
         }
         private static void ShowMenu()
         {
-            Console.WriteLine("{0}======= MENU =======", Environment.NewLine);
+            IO.WriteString(string.Format("{0}======= MENU =======", Environment.NewLine));
 
             int iMenuItem = 0;
             foreach (MenuItemCore menuItem in Menu.MenuItems)
             {
-                Console.WriteLine("{0}: {1}", iMenuItem++, menuItem.Title);
+                IO.WriteString(string.Format("{0}: {1}", iMenuItem++, menuItem.Title));
             }
         }
     }

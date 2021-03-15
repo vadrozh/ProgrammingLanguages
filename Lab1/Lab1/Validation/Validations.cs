@@ -11,7 +11,7 @@ namespace Lab1.Validation
         {
             if (FirstString.Equals(SecondString))
             {
-                Console.WriteLine("Strings equal.");
+                IO.WriteString("Strings equal.");
             }
             else
             {
@@ -36,7 +36,7 @@ namespace Lab1.Validation
 
             if (FirstString.Equals(SecondString))
             {
-                Console.WriteLine("Normalized strings are equal.");
+                IO.WriteString("Normalized strings are equal.");
             }
             else
             {
@@ -51,7 +51,7 @@ namespace Lab1.Validation
 
             if (SecondString.Equals(new string(aReverse)))
             {
-                Console.WriteLine("Strings are palindromes.");
+                IO.WriteString("Strings are palindromes.");
             }
             else
             {
@@ -63,7 +63,7 @@ namespace Lab1.Validation
         {
             if (Regex.IsMatch(sData, "^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\\.[a-z]{2,})$"))
             {
-                Console.WriteLine("String {0} contains E-mail", sData);
+                IO.WriteString(string.Format("String {0} contains E-mail", sData));
             }
             else
             {
@@ -75,7 +75,7 @@ namespace Lab1.Validation
         {
             if (Regex.IsMatch(sData, "[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}"))
             {
-                Console.WriteLine("String {0} contains phone number", sData);
+                IO.WriteString(string.Format("String {0} contains phone number", sData));
             }
             else
             {
@@ -87,7 +87,7 @@ namespace Lab1.Validation
         {
             if (Regex.IsMatch(sData, "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"))
             {
-                Console.WriteLine("String {0} contains IP", sData);
+                IO.WriteString(string.Format("String {0} contains IP", sData));
             }
             else
             {

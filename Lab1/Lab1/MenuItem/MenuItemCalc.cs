@@ -8,13 +8,13 @@ namespace Lab1.MenuItem
 
         public override void Execute()
         {
-            Console.WriteLine("Enter X:");
+            IO.WriteString("Enter X:");
             int x = IO.ReadInteger(null, false, true);
 
-            Console.WriteLine("Enter Z:");
+            IO.WriteString("Enter Z:");
             int z = IO.ReadInteger(null, false);
 
-            Console.WriteLine("Result: {0:F3}{1}", Math.Sqrt(x) - (6 / z), Environment.NewLine);
+            IO.WriteString(string.Format("Result: {0:F3}{1}", Math.Sqrt(x) - (6 / z), Environment.NewLine));
         }
     }
 }

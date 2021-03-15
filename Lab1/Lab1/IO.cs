@@ -10,7 +10,7 @@ namespace Lab1
         {
             if (!string.IsNullOrEmpty(sMessage))
             {
-                Console.WriteLine(sMessage);
+                WriteString(sMessage);
             }
             while (true)
             {
@@ -20,15 +20,15 @@ namespace Lab1
                     return iValue;
                 }
 
-                Console.WriteLine("ERROR: Incorrect value. Enter integer value...");
+                WriteString("ERROR: Incorrect value. Enter integer value...");
             }
         }
 
-        public static DateTime ReadDateTime(string sMessage = null)
+        private static DateTime ReadDateTime(string sMessage = null)
         {
             if (!string.IsNullOrEmpty(sMessage))
             {
-                Console.WriteLine(sMessage);
+                WriteString(sMessage);
             }
             while (true)
             {
@@ -39,8 +39,32 @@ namespace Lab1
                     return date;
                 }
 
-                Console.WriteLine("ERROR: Incorrect format. Enter correct date...");
+                WriteString("ERROR: Incorrect format. Enter correct date...");
             }
+        }
+
+        public static List<DateTime> ReadSegment()
+        {
+            List<DateTime> aBuffer = new List<DateTime>();
+            while (true)
+            {
+                WriteString("Enter first date");
+                DateTime dtFirstDate = IO.ReadDateTime();
+                WriteString("Enter second date");
+                DateTime dtSecondDate = IO.ReadDateTime();
+                if ((dtSecondDate - dtFirstDate).TotalDays >= 0)
+                {
+                    aBuffer.Add(dtFirstDate);
+                    aBuffer.Add(dtSecondDate);
+                    return aBuffer;
+                }
+                WriteString("First date later than second, try again...");
+            }
+        }
+
+        public static void WriteString(string sMessage)
+        {
+            Console.WriteLine(sMessage);
         }
 
         public static string ReadString()

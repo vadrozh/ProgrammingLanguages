@@ -10,7 +10,7 @@ namespace Lab1.MenuItem
 
         public override void Execute()
         {
-            Console.WriteLine("Exiting...");
+            IO.WriteString("Exiting...");
             Environment.Exit(0);
         }
     }

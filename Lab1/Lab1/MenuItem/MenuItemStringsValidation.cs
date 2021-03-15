@@ -11,9 +11,9 @@ namespace Lab1.MenuItem
 
         public override void Execute()
         {
-            Console.WriteLine("Enter first string:");
+            IO.WriteString("Enter first string:");
             string FirstString = IO.ReadString();
-            Console.WriteLine("Enter second string:");
+            IO.WriteString("Enter second string:");
             string SecondString = IO.ReadString();
 
             CatchIsEqual(FirstString, SecondString);
@@ -35,7 +35,7 @@ namespace Lab1.MenuItem
             }
             catch (ValidationException ex)
             {
-                Console.WriteLine(ex.Message);
+                IO.WriteString(ex.Message);
             }
         }
 
@@ -47,7 +47,7 @@ namespace Lab1.MenuItem
             }
             catch (ValidationException ex)
             {
-                Console.WriteLine(ex.Message);
+                IO.WriteString(ex.Message);
             }
         }
 
@@ -59,7 +59,7 @@ namespace Lab1.MenuItem
             }
             catch (ValidationException ex)
             {
-                Console.WriteLine(ex.Message);
+                IO.WriteString(ex.Message);
             }
         }
 
@@ -71,7 +71,7 @@ namespace Lab1.MenuItem
             }
             catch (ValidationException ex)
             {
-                Console.WriteLine(ex.Message);
+                IO.WriteString(ex.Message);
             }
         }
 
@@ -83,7 +83,7 @@ namespace Lab1.MenuItem
             }
             catch (ValidationException ex)
             {
-                Console.WriteLine(ex.Message);
+                IO.WriteString(ex.Message);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Lab1.MenuItem
             }
             catch (ValidationException ex)
             {
-                Console.WriteLine(ex.Message);
+                IO.WriteString(ex.Message);
             }
         }
     }

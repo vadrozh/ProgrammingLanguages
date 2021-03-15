@@ -10,39 +10,20 @@ namespace Lab1.MenuItem
 
         public override void Execute()
         {
-            Console.WriteLine("Enter two time Segments.");
-            Console.WriteLine("First Segment: ");
-            List<DateTime> aFirstSegment = ReadSegment();
-            Console.WriteLine("Second Segment: ");
-            List<DateTime> aSecondSegment = ReadSegment();
+            IO.WriteString("Enter two time Segments.");
+            IO.WriteString("First Segment: ");
+            List<DateTime> aFirstSegment = IO.ReadSegment();
+            IO.WriteString("Second Segment: ");
+            List<DateTime> aSecondSegment = IO.ReadSegment();
 
             int iDays = IntervalDaysInSegments(aFirstSegment, aSecondSegment);
             if (iDays > 4000)
             {
-                Console.WriteLine("Ooof, try with another interval, it's too big (>4000)");
+                IO.WriteString("Ooof, try with another interval, it's too big (>4000)");
             }
 
-            Console.WriteLine("All simple dividers of {0}:", iDays);
+            IO.WriteString(string.Format("All simple dividers of {0}:", iDays));
             ShowAllSimpleDividers(iDays);
-        }
-
-        private static List<DateTime> ReadSegment()
-        {
-            List<DateTime> aBuffer = new List<DateTime>();
-            while (true)
-            {
-                Console.WriteLine("Enter first date");
-                DateTime dtFirstDate = IO.ReadDateTime();
-                Console.WriteLine("Enter second date");
-                DateTime dtSecondDate = IO.ReadDateTime();
-                if ((dtSecondDate - dtFirstDate).TotalDays >= 0)
-                {
-                    aBuffer.Add(dtFirstDate);
-                    aBuffer.Add(dtSecondDate);
-                    return aBuffer;
-                }
-                Console.WriteLine("First date later than second, try again...");
-            }
         }
 
         private static int IntervalDaysInSegments(List<DateTime> FirstSegment, List<DateTime> SecondSegment)
@@ -101,14 +82,14 @@ namespace Lab1.MenuItem
         {
             if (aSimpleNums.Contains(iNumber))
             {
-                Console.Write("{0}\t", iNumber);
+                IO.WriteString(string.Format("{0}", iNumber));
             } else
             {
                 foreach (int iSimpleNum in aSimpleNums)
                 {
                     if (iNumber % iSimpleNum == 0)
                     {
-                        Console.Write("{0}\t", iSimpleNum);
+                        IO.WriteString(string.Format("{0}\t", iSimpleNum));
                         RecursiveCheck(iNumber / iSimpleNum);
                         break;
                     }
