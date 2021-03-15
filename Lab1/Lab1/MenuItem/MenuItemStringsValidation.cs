@@ -5,7 +5,7 @@ using Lab1.Validation;
 
 namespace Lab1.MenuItem
 {
-    class MenuItemStringsValidation : MenuItemCore
+    public class MenuItemStringsValidation : MenuItemCore
     {
         public override string Title { get { return "Strings"; } }
 
@@ -17,6 +17,7 @@ namespace Lab1.MenuItem
             string SecondString = IO.ReadString();
 
             CatchIsEqual(FirstString, SecondString);
+            CatchIsEqualNormalized(FirstString, SecondString);
             CatchIsPalindrome(FirstString, SecondString);
             CatchIsEmail(FirstString);
             CatchIsEmail(SecondString);
@@ -31,6 +32,18 @@ namespace Lab1.MenuItem
             try
             {
                 Validations.IsEqual(FirstString, SecondString);
+            }
+            catch (ValidationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void CatchIsEqualNormalized(string FirstString, string SecondString)
+        {
+            try
+            {
+                Validations.IsEqualNormalized(FirstString, SecondString);
             }
             catch (ValidationException ex)
             {

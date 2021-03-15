@@ -11,11 +11,36 @@ namespace Lab1.Validation
         {
             if (FirstString.Equals(SecondString))
             {
-                throw new ValidationException("Strings equal.");
+                Console.WriteLine("Strings equal.");
             }
             else
             {
                 throw new ValidationException("Strings not equal.");
+            }
+        }
+
+        public static void IsEqualNormalized(string FirstString, string SecondString)
+        {
+            FirstString = FirstString.ToLower();
+            SecondString = SecondString.ToLower();
+            FirstString = FirstString.Trim();
+            SecondString = SecondString.Trim();
+            while (FirstString.Contains("  "))
+            {
+                FirstString = FirstString.Replace("  ", " ");
+            }
+            while (SecondString.Contains("  "))
+            {
+                SecondString = SecondString.Replace("  ", " ");
+            }
+
+            if (FirstString.Equals(SecondString))
+            {
+                Console.WriteLine("Normalized strings are equal.");
+            }
+            else
+            {
+                throw new ValidationException("Normalized strings aren't equal.");
             }
         }
 
@@ -26,7 +51,7 @@ namespace Lab1.Validation
 
             if (SecondString.Equals(new string(aReverse)))
             {
-                throw new ValidationException("Strings are palindromes.");
+                Console.WriteLine("Strings are palindromes.");
             }
             else
             {
@@ -36,9 +61,9 @@ namespace Lab1.Validation
 
         public static void IsEmail(string sData)
         {
-            if (Regex.IsMatch(sData, "[^@ \t\r\n]+@[^@ \t\r\n]+\\.[^@ \t\r\n]+"))
+            if (Regex.IsMatch(sData, "^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\\.[a-z]{2,})$"))
             {
-                throw new ValidationException(string.Format("String {0} contains E-mail", sData));
+                Console.WriteLine("String {0} contains E-mail", sData);
             }
             else
             {
@@ -50,7 +75,7 @@ namespace Lab1.Validation
         {
             if (Regex.IsMatch(sData, "[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}"))
             {
-                throw new ValidationException(string.Format("String {0} contains phone number", sData));
+                Console.WriteLine("String {0} contains phone number", sData);
             }
             else
             {
@@ -62,7 +87,7 @@ namespace Lab1.Validation
         {
             if (Regex.IsMatch(sData, "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"))
             {
-                throw new ValidationException(string.Format("String {0} contains IP", sData));
+                Console.WriteLine("String {0} contains IP", sData);
             }
             else
             {
