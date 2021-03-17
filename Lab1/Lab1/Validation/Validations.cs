@@ -9,11 +9,7 @@ namespace Lab1.Validation
     {
         public static void IsEqual(string FirstString, string SecondString)
         {
-            if (FirstString.Equals(SecondString))
-            {
-                IO.WriteString("Strings equal.");
-            }
-            else
+            if (!FirstString.Equals(SecondString))
             {
                 throw new ValidationException("Strings not equal.");
             }
@@ -34,11 +30,7 @@ namespace Lab1.Validation
                 SecondString = SecondString.Replace("  ", " ");
             }
 
-            if (FirstString.Equals(SecondString))
-            {
-                IO.WriteString("Normalized strings are equal.");
-            }
-            else
+            if (!FirstString.Equals(SecondString))
             {
                 throw new ValidationException("Normalized strings aren't equal.");
             }
@@ -49,11 +41,7 @@ namespace Lab1.Validation
             char[] aReverse = FirstString.ToCharArray();
             Array.Reverse(aReverse);
 
-            if (SecondString.Equals(new string(aReverse)))
-            {
-                IO.WriteString("Strings are palindromes.");
-            }
-            else
+            if (!SecondString.Equals(new string(aReverse)))
             {
                 throw new ValidationException("Strings aren't palindromes.");
             }
@@ -61,11 +49,7 @@ namespace Lab1.Validation
 
         public static void IsEmail(string sData)
         {
-            if (Regex.IsMatch(sData, "^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\\.[a-z]{2,})$"))
-            {
-                IO.WriteString(string.Format("String {0} contains E-mail", sData));
-            }
-            else
+            if (!Regex.IsMatch(sData, "^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\\.[a-z]{2,})$"))
             {
                 throw new ValidationException(string.Format("String {0} doesn't contains E-mail", sData));
             }
@@ -73,11 +57,7 @@ namespace Lab1.Validation
 
         public static void IsPhoneNumber(string sData)
         {
-            if (Regex.IsMatch(sData, "[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}"))
-            {
-                IO.WriteString(string.Format("String {0} contains phone number", sData));
-            }
-            else
+            if (!Regex.IsMatch(sData, "[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}"))
             {
                 throw new ValidationException(string.Format("String {0} doesn't contains phone number", sData));
             }
@@ -85,11 +65,7 @@ namespace Lab1.Validation
 
         public static void IsIP(string sData)
         {
-            if (Regex.IsMatch(sData, "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"))
-            {
-                IO.WriteString(string.Format("String {0} contains IP", sData));
-            }
-            else
+            if (!Regex.IsMatch(sData, "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"))
             {
                 throw new ValidationException(string.Format("String {0} doesn't contains IP", sData));
             }

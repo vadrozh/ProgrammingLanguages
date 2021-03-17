@@ -32,6 +32,7 @@ namespace Lab1.MenuItem
             try
             {
                 Validations.IsEqual(FirstString, SecondString);
+                IO.WriteString("Strings are equal.");
             }
             catch (ValidationException ex)
             {
@@ -44,6 +45,7 @@ namespace Lab1.MenuItem
             try
             {
                 Validations.IsEqualNormalized(FirstString, SecondString);
+                IO.WriteString("Normalized strings are equal.");
             }
             catch (ValidationException ex)
             {
@@ -56,6 +58,7 @@ namespace Lab1.MenuItem
             try
             {
                 Validations.IsPalindrome(FirstString, SecondString);
+                IO.WriteString("Strings are palindromes.");
             }
             catch (ValidationException ex)
             {
@@ -68,6 +71,7 @@ namespace Lab1.MenuItem
             try
             {
                 Validations.IsEmail(FirstString);
+                IO.WriteString(string.Format("String {0} contains E-mail", FirstString));
             }
             catch (ValidationException ex)
             {
@@ -80,6 +84,7 @@ namespace Lab1.MenuItem
             try
             {
                 Validations.IsPhoneNumber(FirstString);
+                IO.WriteString(string.Format("String {0} contains phone number", FirstString));
             }
             catch (ValidationException ex)
             {
@@ -92,6 +97,7 @@ namespace Lab1.MenuItem
             try
             {
                 Validations.IsIP(FirstString);
+                IO.WriteString(string.Format("String {0} contains IP", FirstString));
             }
             catch (ValidationException ex)
             {
