@@ -8,18 +8,34 @@ namespace Lab1.MenuItem
     {
         public override string Title { get { return "Recursion date"; } }
 
-        public override void Execute()
+        public override void Execute(IO IOClass)
         {
-            IO.WriteString("Enter two time Segments.");
-            IO.WriteString("First Segment: ");
-            List<DateTime> aFirstSegment = IO.ReadDTSegment();
-            IO.WriteString("Second Segment: ");
-            List<DateTime> aSecondSegment = IO.ReadDTSegment();
-
+            List<DateTime> aFirstSegment = null, aSecondSegment = null;
+            if (IOClass.IsParsed)
+            {
+                if ((IOClass.ParsedFirstDTSegment != null) && (IOClass.ParsedSecondDTSegment != null))
+                {
+                    aFirstSegment = IOClass.ParsedFirstDTSegment;
+                    aSecondSegment = IOClass.ParsedSecondDTSegment;
+                }
+                else
+                {
+                    IO.WriteString("Dates are invalid");
+                    return;
+                }
+            }
+            else
+            {
+                IO.WriteString("Enter two time Segments.");
+                IO.WriteString("First Segment: ");
+                aFirstSegment = IO.ReadDTSegment();
+                IO.WriteString("Second Segment: ");
+                aSecondSegment = IO.ReadDTSegment();
+            }
             int iDays = IntervalDaysInSegments(aFirstSegment, aSecondSegment);
             if (iDays > 4000)
             {
-                IO.WriteString("Ooof, try with another interval, it's too big (>4000)");
+                IO.WriteString("Ooof, this interval is too big (>4000)");
             }
 
             IO.WriteString(string.Format("All simple dividers of {0}:", iDays));

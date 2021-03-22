@@ -7,6 +7,6 @@ namespace Lab1.MenuItem
     public abstract class MenuItemCore
     {
         public abstract string Title { get; }
-        public abstract void Execute();
+        public abstract void Execute(IO IOClass);
     }
 }

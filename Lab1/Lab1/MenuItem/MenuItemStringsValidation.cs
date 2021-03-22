@@ -9,12 +9,29 @@ namespace Lab1.MenuItem
     {
         public override string Title { get { return "Strings"; } }
 
-        public override void Execute()
+        public override void Execute(IO IOClass)
         {
-            IO.WriteString("Enter first string:");
-            string FirstString = IO.ReadString();
-            IO.WriteString("Enter second string:");
-            string SecondString = IO.ReadString();
+            string FirstString, SecondString;
+            if (IOClass.IsParsed)
+            {
+                if ((IOClass.ParsedFirstString != null) && (IOClass.ParsedSecondString != null))
+                {
+                    FirstString = IOClass.ParsedFirstString;
+                    SecondString = IOClass.ParsedSecondString;
+                }
+                else
+                {
+                    IO.WriteString("Strings are invalid");
+                    return;
+                }
+            }
+            else
+            {
+                IO.WriteString("Enter first string:");
+                FirstString = IO.ReadString();
+                IO.WriteString("Enter second string:");
+                SecondString = IO.ReadString();
+            }
 
             CatchIsEqual(FirstString, SecondString);
             CatchIsEqualNormalized(FirstString, SecondString);

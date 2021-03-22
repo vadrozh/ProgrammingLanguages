@@ -1,4 +1,5 @@
 ﻿using Lab1.MenuItem;
+using Lab1.Validation;
 using System;
 
 namespace Lab1
@@ -14,9 +15,27 @@ namespace Lab1
             Menu.AddItem(new MenuItemRecursionDate());
             Menu.AddItem(new MenuItemStringsValidation());
 
-            while (true)
+            IO IOClass = null;
+
+            try
             {
-                Menu.Execute();
+                IOClass = Parser.ParseArgs(args);
+            }
+            catch (ValidationException ex)
+            {
+                IO.WriteString(ex.Message);
+            }
+
+            if (IOClass.IsParsed)
+            {
+                Menu.Execute(IOClass);
+            }
+            else
+            {
+                while (true)
+                {
+                    Menu.Execute(IOClass);
+                }
             }
         }
     }

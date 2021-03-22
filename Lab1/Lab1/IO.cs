@@ -4,8 +4,32 @@ using System.Text;
 
 namespace Lab1
 {
-    public static class IO
+    public class IO
     {
+        public bool IsParsed { get; private set; }
+        public int? ParsedMenuItem { get; private set; }
+        public int? ParsedXParameter { get; private set; }
+        public int? ParsedZParameter { get; private set; }
+        public List<DateTime> ParsedFirstDTSegment { get; private set; }
+        public List<DateTime> ParsedSecondDTSegment { get; private set; }
+        public string ParsedFirstString { get; private set; }
+        public string ParsedSecondString { get; private set; }
+
+        public IO(bool bParsed = false, int? iMenuItem = null,
+                  int? iX = null, int? iZ = null,
+                  List<DateTime> FirstDTSegment = null, List<DateTime> SecondDTSegment = null,
+                  string FirstString = null, string SecondString = null)
+        {
+            IsParsed = bParsed;
+            ParsedMenuItem = iMenuItem;
+            ParsedXParameter = iX;
+            ParsedZParameter = iZ;
+            ParsedFirstDTSegment = FirstDTSegment;
+            ParsedSecondDTSegment = SecondDTSegment;
+            ParsedFirstString = FirstString;
+            ParsedSecondString = SecondString;
+        }
+
         public static int ReadInteger(string sMessage = null, bool bZeroAcceptable = true, bool bIsNotNegative = false)
         {
             if (!string.IsNullOrEmpty(sMessage))
@@ -52,7 +76,7 @@ namespace Lab1
                 DateTime dtFirstDate = IO.ReadDateTime();
                 WriteString("Enter second date");
                 DateTime dtSecondDate = IO.ReadDateTime();
-                if ((dtSecondDate - dtFirstDate).TotalDays >= 0)
+                if (IsSegmentValid(dtFirstDate, dtSecondDate))
                 {
                     aBuffer.Add(dtFirstDate);
                     aBuffer.Add(dtSecondDate);
@@ -60,6 +84,11 @@ namespace Lab1
                 }
                 WriteString("First date later than second, try again...");
             }
+        }
+
+        public static bool IsSegmentValid(DateTime dtFirstDate, DateTime dtSecondDate)
+        {
+            return ((dtSecondDate - dtFirstDate).TotalDays >= 0);
         }
 
         public static void WriteString(string sMessage)

@@ -8,7 +8,7 @@ namespace Lab1.MenuItem
     {
         public override string Title { get { return "Exit"; } }
 
-        public override void Execute()
+        public override void Execute(IO IOClass)
         {
             IO.WriteString("Exiting...");
             Environment.Exit(0);

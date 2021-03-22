@@ -8,7 +8,7 @@ namespace Lab1.MenuItem
     {
         public override string Title { get { return "Hello world!"; } }
 
-        public override void Execute()
+        public override void Execute(IO IOClass)
         {
             IO.WriteString(string.Format("Hello world! {0}", Environment.NewLine));
         }
