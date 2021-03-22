@@ -12,9 +12,9 @@ namespace Lab1.MenuItem
         {
             IO.WriteString("Enter two time Segments.");
             IO.WriteString("First Segment: ");
-            List<DateTime> aFirstSegment = IO.ReadSegment();
+            List<DateTime> aFirstSegment = IO.ReadDTSegment();
             IO.WriteString("Second Segment: ");
-            List<DateTime> aSecondSegment = IO.ReadSegment();
+            List<DateTime> aSecondSegment = IO.ReadDTSegment();
 
             int iDays = IntervalDaysInSegments(aFirstSegment, aSecondSegment);
             if (iDays > 4000)

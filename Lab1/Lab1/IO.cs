@@ -43,7 +43,7 @@ namespace Lab1
             }
         }
 
-        public static List<DateTime> ReadSegment()
+        public static List<DateTime> ReadDTSegment()
         {
             List<DateTime> aBuffer = new List<DateTime>();
             while (true)
