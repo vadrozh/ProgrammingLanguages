@@ -11,7 +11,7 @@ namespace Lab1
         public static IO ParseArgs(string[] args)
         {
             int? iMenu = null, iX = null, iZ = null;
-            DateTime FirstDate = DateTime.MinValue, SecondDate = DateTime.MinValue, ThirdDate = DateTime.MinValue, FourthDate = DateTime.MinValue;
+            DateTime? FirstDate = null, SecondDate = null, ThirdDate = null, FourthDate = null;
             String FirstString = null, SecondString = null;
 
             for (int i = 0; i < args.Length; i++)
@@ -61,10 +61,11 @@ namespace Lab1
                     {
                         throw new ValidationException("Can't read first segment first date parameter: no data.");
                     }
-                    if (!DateTime.TryParseExact(args[i + 1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out FirstDate))
+                    if (!DateTime.TryParseExact(args[i + 1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime tmp))
                     {
                         throw new ValidationException("Can't read first segment first date parameter.");
                     }
+                    FirstDate = tmp;
                 }
 
                 if (args[i] == "-d1end")
@@ -73,10 +74,11 @@ namespace Lab1
                     {
                         throw new ValidationException("Can't read first segment second date parameter: no data.");
                     }
-                    if (!DateTime.TryParseExact(args[i + 1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out SecondDate))
+                    if (!DateTime.TryParseExact(args[i + 1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime tmp))
                     {
                         throw new ValidationException("Can't read first segment second date parameter.");
                     }
+                    SecondDate = tmp;
                 }
 
                 if (args[i] == "-d2st")
@@ -85,10 +87,11 @@ namespace Lab1
                     {
                         throw new ValidationException("Can't read second segment first date parameter: no data.");
                     }
-                    if (!DateTime.TryParseExact(args[i + 1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out ThirdDate))
+                    if (!DateTime.TryParseExact(args[i + 1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime tmp))
                     {
                         throw new ValidationException("Can't read second segment first date parameter.");
                     }
+                    ThirdDate = tmp;
                 }
 
                 if (args[i] == "-d2end")
@@ -97,10 +100,11 @@ namespace Lab1
                     {
                         throw new ValidationException("Can't read second segment second date parameter: no data.");
                     }
-                    if (!DateTime.TryParseExact(args[i + 1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out FourthDate))
+                    if (!DateTime.TryParseExact(args[i + 1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime tmp))
                     {
                         throw new ValidationException("Can't read second segment second date parameter.");
                     }
+                    FourthDate = tmp;
                 }
 
                 if (args[i] == "-s1")
@@ -122,28 +126,8 @@ namespace Lab1
                 }
             }
 
-            if (iMenu == null)
-            {
-                return new IO();
-            }
-            else
-            {
-                List<DateTime> aFirstBuffer = null;
-                List<DateTime> aSecondBuffer = null;
-                if ((FirstDate != DateTime.MinValue) && (SecondDate != DateTime.MinValue) && (ThirdDate != DateTime.MinValue) && (FourthDate != DateTime.MinValue))
-                {
-                    if (IO.IsSegmentValid(FirstDate, SecondDate) && IO.IsSegmentValid(ThirdDate, FourthDate))
-                    {
-                        aFirstBuffer = new List<DateTime>();
-                        aSecondBuffer = new List<DateTime>();
-                        aFirstBuffer.Add(FirstDate);
-                        aFirstBuffer.Add(SecondDate);
-                        aSecondBuffer.Add(ThirdDate);
-                        aSecondBuffer.Add(FourthDate);
-                    }
-                }
-                return new IO(true, iMenu, iX, iZ, aFirstBuffer, aSecondBuffer, FirstString, SecondString);
-            }
+
+            return new IO((iMenu != null), iMenu, iX, iZ, FirstDate, SecondDate, ThirdDate, FourthDate, FirstString, SecondString);
         }
     }
 }

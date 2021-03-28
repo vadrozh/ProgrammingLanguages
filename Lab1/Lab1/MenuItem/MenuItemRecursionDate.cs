@@ -11,27 +11,12 @@ namespace Lab1.MenuItem
         public override void Execute(IO IOClass)
         {
             List<DateTime> aFirstSegment = null, aSecondSegment = null;
-            if (IOClass.IsParsed)
-            {
-                if ((IOClass.ParsedFirstDTSegment != null) && (IOClass.ParsedSecondDTSegment != null))
-                {
-                    aFirstSegment = IOClass.ParsedFirstDTSegment;
-                    aSecondSegment = IOClass.ParsedSecondDTSegment;
-                }
-                else
-                {
-                    IO.WriteString("Dates are invalid");
-                    return;
-                }
-            }
-            else
+            if (!IOClass.IsParsed)
             {
                 IO.WriteString("Enter two time Segments.");
-                IO.WriteString("First Segment: ");
-                aFirstSegment = IO.ReadDTSegment();
-                IO.WriteString("Second Segment: ");
-                aSecondSegment = IO.ReadDTSegment();
             }
+            aFirstSegment = IOClass.ReadDTSegment("First");
+            aSecondSegment = IOClass.ReadDTSegment("Second");
             int iDays = IntervalDaysInSegments(aFirstSegment, aSecondSegment);
             if (iDays > 4000)
             {
@@ -94,7 +79,7 @@ namespace Lab1.MenuItem
             RecursiveCheck(iNumber);
         }
 
-        static void RecursiveCheck(int iNumber)
+        private static void RecursiveCheck(int iNumber)
         {
             if (aSimpleNums.Contains(iNumber))
             {

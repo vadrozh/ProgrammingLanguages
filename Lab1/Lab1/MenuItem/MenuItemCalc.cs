@@ -1,4 +1,5 @@
 ﻿using System;
+using Lab1.Validation;
 
 namespace Lab1.MenuItem
 {
@@ -8,29 +9,16 @@ namespace Lab1.MenuItem
 
         public override void Execute(IO IOClass)
         {
-            int x = 1, z = 1;
-            if (IOClass.IsParsed)
-            {
-                if ((IOClass.ParsedXParameter > 0) && (IOClass.ParsedZParameter > 0))
-                {
-                    x = (int)IOClass.ParsedXParameter;
-                    z = (int)IOClass.ParsedZParameter;
-                }
-                else
-                {
-                    IO.WriteString("X or Z is invalid");
-                    return;
-                }
-            }
-            else
-            {
-                IO.WriteString("Enter X:");
-                x = IO.ReadInteger(null, false, true);
+            int x, z;
+            x = IOClass.ReadInteger("X", "Enter X:", false, true);
+            z = IOClass.ReadInteger("Z", "Enter Z:", false);
 
-                IO.WriteString("Enter Z:");
-                z = IO.ReadInteger(null, false);
-            }
-            IO.WriteString(string.Format("Result: {0:F3}{1}", Math.Sqrt(x) - (6 / z), Environment.NewLine));
+            IO.WriteString(string.Format("Result: {0:F3}{1}", Calculate(x, z), Environment.NewLine));
+        }
+
+        public static double Calculate(int x, int z)
+        {
+            return Math.Sqrt(x) - (6 / z);
         }
     }
 }

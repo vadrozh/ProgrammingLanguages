@@ -12,26 +12,8 @@ namespace Lab1.MenuItem
         public override void Execute(IO IOClass)
         {
             string FirstString, SecondString;
-            if (IOClass.IsParsed)
-            {
-                if ((IOClass.ParsedFirstString != null) && (IOClass.ParsedSecondString != null))
-                {
-                    FirstString = IOClass.ParsedFirstString;
-                    SecondString = IOClass.ParsedSecondString;
-                }
-                else
-                {
-                    IO.WriteString("Strings are invalid");
-                    return;
-                }
-            }
-            else
-            {
-                IO.WriteString("Enter first string:");
-                FirstString = IO.ReadString();
-                IO.WriteString("Enter second string:");
-                SecondString = IO.ReadString();
-            }
+            FirstString = IOClass.ReadString("First string", "Enter first string:");
+            SecondString = IOClass.ReadString("Second string", "Enter second string:");
 
             CatchIsEqual(FirstString, SecondString);
             CatchIsEqualNormalized(FirstString, SecondString);

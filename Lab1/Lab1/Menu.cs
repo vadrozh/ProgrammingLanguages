@@ -10,6 +10,14 @@ namespace Lab1
     {
         private static List<MenuItemCore> MenuItems = new List<MenuItemCore>();
 
+        public static int ItemsCount
+        {
+            get
+            {
+                return MenuItems.Count;
+            }
+        }
+
         public static void ClearItems()
         {
             Menu.MenuItems.Clear();
@@ -22,29 +30,22 @@ namespace Lab1
 
         public static void Execute(IO IOClass)
         {
-            if (IOClass.IsParsed)
+            if (!IOClass.IsParsed)
             {
-                if (IOClass.ParsedMenuItem >= 0 && IOClass.ParsedMenuItem < Menu.MenuItems.Count)
-                {
-                    Menu.MenuItems.ToArray()[(int)IOClass.ParsedMenuItem].Execute(IOClass);
-                }
-                else
-                {
-                    IO.WriteString("Menu item not found.");
-                }
+                ShowMenu();
+            }
+            int iMenu = IOClass.ReadInteger("Menu Item", null, true, true);
+            if (iMenu < Menu.MenuItems.Count)
+            {
+                Menu.MenuItems.ToArray()[iMenu].Execute(IOClass);
             }
             else
             {
-                ShowMenu();
-                int iMenu = IO.ReadInteger(null);
-                if (iMenu >= 0 && iMenu < Menu.MenuItems.Count)
+                if (IOClass.IsParsed)
                 {
-                    Menu.MenuItems.ToArray()[iMenu].Execute(IOClass);
+                    throw new ValidationException("Menu item not found.");
                 }
-                else
-                {
-                    IO.WriteString(string.Format("Menu item not found.{0}", Environment.NewLine));
-                }
+                IO.WriteString(string.Format("Menu item not found.{0}", Environment.NewLine));
             }
         }
         private static void ShowMenu()

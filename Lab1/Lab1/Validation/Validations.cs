@@ -11,7 +11,7 @@ namespace Lab1.Validation
         {
             if (!FirstString.Equals(SecondString))
             {
-                throw new ValidationException("Strings not equal.");
+                throw new ValidationException("Strings aren't equal.");
             }
         }
 
