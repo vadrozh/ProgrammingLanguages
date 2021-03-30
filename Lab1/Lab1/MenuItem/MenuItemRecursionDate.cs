@@ -27,7 +27,7 @@ namespace Lab1.MenuItem
             ShowAllSimpleDividers(iDays);
         }
 
-        private static int IntervalDaysInSegments(List<DateTime> FirstSegment, List<DateTime> SecondSegment)
+        public static int IntervalDaysInSegments(List<DateTime> FirstSegment, List<DateTime> SecondSegment)
         {
             int iDays = 0;
 

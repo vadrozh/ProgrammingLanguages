@@ -35,11 +35,23 @@ namespace Lab1
             IOStringData.Add("Second string", SecondString);
         }
 
-        public int ReadInteger(string sVarName = null, string sMessage = null, bool bZeroAcceptable = true, bool bIsNotNegative = false)
+        public int ReadInteger(string sVarName = null, string sMessage = null, bool bZeroAcceptable = true, bool bIsNotNegative = false, string sTryReadValue = null)
         {
             if (!string.IsNullOrEmpty(sMessage) && !IsParsed)
             {
                 WriteString(sMessage);
+            }
+
+            if (sTryReadValue != null)
+            {
+                if (Int32.TryParse(sTryReadValue, out int iTryRead) && (bZeroAcceptable || iTryRead != 0) && (!bIsNotNegative || (iTryRead >= 0)))
+                {
+                    return iTryRead;
+                }
+                else
+                {
+                    throw new ValidationException(string.Format("Value {0} is incorrect.", sTryReadValue));
+                }
             }
 
             if (IsParsed && (sVarName != null))
@@ -66,11 +78,23 @@ namespace Lab1
             }
         }
 
-        private DateTime ReadDateTime(string sVarName = null, string sMessage = null)
+        public DateTime ReadDateTime(string sVarName = null, string sMessage = null, string sTryReadValue = null)
         {
             if (!string.IsNullOrEmpty(sMessage) && !IsParsed)
             {
                 WriteString(sMessage);
+            }
+
+            if (sTryReadValue != null)
+            {
+                if (DateTime.TryParseExact(sTryReadValue, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime dtTryRead))
+                {
+                    return dtTryRead;
+                }
+                else
+                {
+                    throw new ValidationException(string.Format("Value {0} is incorrect.", dtTryRead));
+                }
             }
 
             if (IsParsed && (sVarName != null))
@@ -88,8 +112,7 @@ namespace Lab1
             while (true)
             {
                 string sValue = Console.ReadLine();
-                DateTime date;
-                if (DateTime.TryParseExact(sValue, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
+                if (DateTime.TryParseExact(sValue, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime date))
                 {
                     return date;
                 }
@@ -131,7 +154,7 @@ namespace Lab1
 
         public static bool IsSegmentValid(DateTime dtFirstDate, DateTime dtSecondDate)
         {
-            return ((dtSecondDate - dtFirstDate).TotalDays >= 0);
+            return ((dtSecondDate - dtFirstDate).TotalDays > 0);
         }
 
         public static void WriteString(string sMessage)
